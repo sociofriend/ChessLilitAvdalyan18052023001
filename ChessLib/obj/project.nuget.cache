@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9WsSXoJlCIwaTwAWEcJ8ANVb4PH7jniFUgMdUzcczmNyMcOMR4aLls7Wp/6X66VXPrzbgFxQzXe+yY+cV9p4ZQ==",
+  "success": true,
+  "projectFilePath": "/Users/lilitavdalyan/Desktop/OOP_Chess_Homework/Chess/ChessLib/ChessLib.csproj",
+  "expectedPackageFiles": [
+    "/Users/lilitavdalyan/.nuget/packages/microsoft.build.tasks.git/1.1.1/microsoft.build.tasks.git.1.1.1.nupkg.sha512",
+    "/Users/lilitavdalyan/.nuget/packages/microsoft.sourcelink.common/1.1.1/microsoft.sourcelink.common.1.1.1.nupkg.sha512",
+    "/Users/lilitavdalyan/.nuget/packages/microsoft.sourcelink.github/1.1.1/microsoft.sourcelink.github.1.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
