@@ -44,7 +44,6 @@ namespace ChessProject
             }
         }
 
-
         /// <summary>
         /// Gets user input on coordinates for identifying on which chell to print the figure.
         /// </summary>
@@ -58,14 +57,13 @@ namespace ChessProject
 
             if ((input.Length == 2) && (input[0] >= 65 && input[0] <= 72) &&
                 (input[1] >= 49 && input[1] <= 56))
-                return ChessLib.Coordinates.CreateArray2D(((int)input[1] - 49), ((int)input[0] - 65));
+                return ChessLib.Coordinates.CreateArray2D(((int)input[0] - 65),((int)input[1] - 49));
             else
             {
                 Console.WriteLine("WRONG INPUT: Please input two-symbol command");
                 return GetCoordinates();
             }
         }
-
 
         /// <summary>
         /// Prints the chess board with user inputs for figure and coordinates. For chess common features
@@ -91,6 +89,11 @@ namespace ChessProject
                     break;
                 case "Q":
                     Queen.BoardPrinterWithLegalSteps(figure, coordinates);
+
+                    Console.WriteLine("Please enter initial then destination coordinates for Queen.".ToUpper());
+                    Console.WriteLine();
+                    Console.WriteLine(Queen.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.WriteLine();
                     RunChess();
                     break;
             }

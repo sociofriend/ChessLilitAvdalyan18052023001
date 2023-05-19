@@ -48,5 +48,6 @@ public class Chess
         }
         Console.WriteLine("  A B C D E F G H  ");
     }
+
 }
 

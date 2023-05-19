@@ -3,11 +3,10 @@ namespace ChessLib
 {
     public struct Coordinates
     {
-        //fields
-        public static int[,] coordinates = new int[8, 8];
-        static int row, colomn, sum, diff;
+        public Coordinates()
+        {
 
-        //static constructor is implemented to prevent class object creation 
+        }
 
         /// <summary>
         /// Creates two-dimensional array of integers with user coordinates for figure.
@@ -19,20 +18,18 @@ namespace ChessLib
         /// <returns>Returns two-dimensional array of integers.</returns>
         public static int[,] CreateArray2D(int m, int n)
         {
+            int[,] coordinates = new int[8, 8];
+
             for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
                 {
-                    if (i == m && j == n)
-                    { 
-                        coordinates[i, j] = 1;
-                        row = i;
-                        colomn = j;
-                        sum = i + j;
-                        diff = i - j;
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (i == n && j == m)
+                        {
+                            coordinates[i, j] = 1;
+                        }
                     }
                 }
-            }
             return coordinates;
         }
     }
