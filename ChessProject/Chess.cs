@@ -79,19 +79,28 @@ namespace ChessProject
                 //    break;
                 case "R":
                     Rook.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Console.WriteLine("Please enter initial then destination coordinates for ROOK.".ToUpper());
+                    Console.WriteLine();
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine(Rook.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.WriteLine();
                     RunChess();
                     break;
                 //case "N":
                 //    break;
                 case "B":
                     Bishop.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
+                    Console.WriteLine(Bishop.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine();
                     RunChess();
                     break;
                 case "Q":
                     Queen.BoardPrinterWithLegalSteps(figure, coordinates);
-
                     Console.WriteLine("Please enter initial then destination coordinates for Queen.".ToUpper());
                     Console.WriteLine();
+                    Console.BackgroundColor = ConsoleColor.White;
                     Console.WriteLine(Queen.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.WriteLine();
                     RunChess();

@@ -106,7 +106,11 @@ namespace ChessLib
             }
 
             if (initialCoordinates[destRow, destColomn] == 2)
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
                 return true;
+            }
+            Console.BackgroundColor = ConsoleColor.Red;
             return false;
         }
     }
