@@ -120,6 +120,12 @@ namespace ChessLib
             Console.BackgroundColor = ConsoleColor.Red;
             return false;
         }
+
+        public void MoveShowLegalSteps()
+        {
+
+        }
+
     }
 }
 

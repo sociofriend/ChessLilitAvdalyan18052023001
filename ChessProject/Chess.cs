@@ -15,7 +15,9 @@ namespace ChessProject
         /// </summary>
         public void RunChess()
         {
-            PrintBoard(GetFigure(), GetCoordinates());
+            //PrintBoard(GetFigure(), GetCoordinates());
+            PrintBoardWithNewSteps();
+            Console.BackgroundColor = ConsoleColor.White;
             Console.WriteLine();
             RunChess();
         }
@@ -77,40 +79,30 @@ namespace ChessProject
                 case "K":
                     King king = new King();
                     king.BoardPrinterWithLegalSteps(figure, coordinates);
-                    Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
-                    Console.WriteLine(king.MoveTo(GetCoordinates(), GetCoordinates()));
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine("Please enter initial then destination coordinates for King.".ToUpper());
                     Console.WriteLine();
-                    RunChess();
+                    Console.WriteLine(king.MoveTo(GetCoordinates(), GetCoordinates()));
                     break;
                 case "R":
                     Rook rook = new Rook();
                     rook.BoardPrinterWithLegalSteps(figure, coordinates);
                     Console.WriteLine("Please enter initial then destination coordinates for ROOK.".ToUpper());
                     Console.WriteLine();
-                    Console.BackgroundColor = ConsoleColor.White;
                     Console.WriteLine(rook.MoveTo(GetCoordinates(), GetCoordinates()));
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.WriteLine();
-                    RunChess();
                     break;
                 case "N":
                     Knight knight = new Knight();
                     knight.BoardPrinterWithLegalSteps(figure, coordinates);
-                    Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
-                    Console.WriteLine(knight.MoveTo(GetCoordinates(), GetCoordinates()));
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine("Please enter initial then destination coordinates for Knight.".ToUpper());
                     Console.WriteLine();
-                    RunChess();
+                    Console.WriteLine(knight.MoveTo(GetCoordinates(), GetCoordinates()));
                     break;
                 case "B":
                     Bishop bishop = new Bishop();
                     bishop.BoardPrinterWithLegalSteps(figure, coordinates);
                     Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
-                    Console.WriteLine(bishop.MoveTo(GetCoordinates(), GetCoordinates()));
-                    Console.BackgroundColor = ConsoleColor.White;
                     Console.WriteLine();
-                    RunChess();
+                    Console.WriteLine(bishop.MoveTo(GetCoordinates(), GetCoordinates()));
                     break;
                 case "Q":
                     Queen queen = new Queen();
@@ -118,10 +110,107 @@ namespace ChessProject
                     Console.WriteLine("Please enter initial then destination coordinates for Queen.".ToUpper());
                     Console.WriteLine();
                     Console.WriteLine(queen.MoveTo(GetCoordinates(), GetCoordinates()));
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.WriteLine();
-                    RunChess();
                     break;
+            }
+        }
+        /// <summary>
+        /// Prints given initial and destionation coordinates of the given figure with legal steps.
+        /// </summary>
+        void PrintBoardWithNewSteps()
+        {
+            string figure1 = GetFigure();
+            Console.WriteLine("\nPlease input the initial  coordinates: ");
+            int[,] initialCoordinates = GetCoordinates();
+            Console.WriteLine("\nNow please input the destination  coordinates: ");
+            int[,] destinationCoordinates = GetCoordinates();
+
+            switch(figure1)
+            {
+                case "K":
+                    King king = new King();
+                    king.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    if (king.MoveTo(initialCoordinates, destinationCoordinates))
+                    {
+                        Console.WriteLine("Right input.");
+                        king.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nNow please input the destination  coordinates: ");
+                        destinationCoordinates = GetCoordinates();
+                        king.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    break;
+                case "R":
+                    Rook rook = new Rook();
+                    rook.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    if (rook.MoveTo(initialCoordinates, destinationCoordinates))
+                    {
+                        Console.WriteLine("Right input.");
+                        rook.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nNow please input the destination  coordinates: ");
+                        destinationCoordinates = GetCoordinates();
+                        rook.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    break;
+                case "N":
+                    Knight knight = new Knight();
+                    knight.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    if (knight.MoveTo(initialCoordinates, destinationCoordinates))
+                    {
+                        Console.WriteLine("Right input.");
+                        knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nNow please input the destination  coordinates: ");
+                        destinationCoordinates = GetCoordinates();
+                        knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                        break;
+                case "B":
+                    Bishop bishop = new Bishop();
+                    bishop.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    if (bishop.MoveTo(initialCoordinates, destinationCoordinates))
+                    {
+                        Console.WriteLine("Right input.");
+                        bishop.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nNow please input the destination  coordinates: ");
+                        destinationCoordinates = GetCoordinates();
+                        bishop.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                        break;
+                case "Q":
+                    Queen queen = new Queen();
+                    queen.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    if (queen.MoveTo(initialCoordinates, destinationCoordinates))
+                    {
+                        Console.WriteLine("Right input.");
+                        queen.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nNow please input the destination  coordinates: ");
+                        destinationCoordinates = GetCoordinates();
+                        queen.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    }
+                        break;
             }
         }
     }
