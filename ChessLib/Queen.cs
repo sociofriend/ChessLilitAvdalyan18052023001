@@ -3,10 +3,14 @@ namespace ChessLib
 {
     public class Queen
     {
-        static int sum = 0;
-        static int dif = 0;
-        static int[,] coordinates = new int[8, 8];
+        //variables
+        public int sum = 0;
+        public int dif = 0;
+        int row = 0;
+        int colomn = 0;
+        public int[,] coordinates = new int[8, 8];
 
+        //methods
         /// <summary>
         ///Recieves two-dimensional array of integers identifying the place of the
         ///figure, assignes the value of 2 to coordinates matching the legal steps' requirements.
@@ -14,13 +18,13 @@ namespace ChessLib
         /// <param name="figure">String type variable.</param>
         /// <param name="coordinates">Two-dimensional array of integers.</param>
         /// <returns></returns>
-        public static int[,] AddLegalSteps(string figure, int[,] coordinates)
+        public int[,] AddLegalSteps(string figure, int[,] coordinates)
         {
             for(int i=0; i<8; i++)
             {
                 for(int j=0; j<8; j++)
                 {
-                    if ((coordinates[i, j] != 1) && ((i + j) == sum || (i - j == dif)))
+                    if ((coordinates[i, j] != 1) && ((i + j) == sum || (i - j == dif) || (i==row) || (j==colomn)))
                         coordinates[i, j] = 2;
                 }
             }
@@ -33,9 +37,9 @@ namespace ChessLib
         /// </summary>
         /// <param name="figure">String type variable.</param>
         /// <param name="coordinates">Array of integers with i,j coordinates of the figure on the board.</param>
-        public static void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
+        public void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
         {
-            Queen.coordinates = coordinates;
+            this.coordinates = coordinates;
 
             //assign sum and dif variables of the class.
             for (int i = 0; i < 8; i++)
@@ -46,6 +50,8 @@ namespace ChessLib
                     {
                         sum = i + j;
                         dif = i - j;
+                        row = i;
+                        colomn = j;
                     }
                 }
             }
@@ -78,14 +84,15 @@ namespace ChessLib
             Console.WriteLine("  A B C D E F G H  ");
         }
 
-
         /// <summary>
         /// Shows whether the given figure may take the given step.
         /// </summary>
-        /// <param name=""></param>
-        /// <param name=""></param>
-        /// <returns></returns>
-        public static bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
+        /// <param name="initialCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the initial coordinates of the given figure.</param>
+        /// <param name="destinationCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the destination coordinates of the given figure.</param>
+        /// <returns>Boolean value.</returns>
+        public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
         {
             AddLegalSteps("q", initialCoordinates);
 

@@ -29,7 +29,6 @@ namespace ChessProject
             Console.WriteLine("Choose a figure: press R for rook, N " +
             "for knight, B for bishop, K for king and Q for queen.");
 
-            //string letters = "RNBKQ";
             string figure = Console.ReadLine().ToUpper();
 
 
@@ -75,33 +74,51 @@ namespace ChessProject
         {
             switch (figure)
             {
-                //case "K": 
-                //    break;
-                case "R":
-                    Rook.BoardPrinterWithLegalSteps(figure, coordinates);
-                    Console.WriteLine("Please enter initial then destination coordinates for ROOK.".ToUpper());
-                    Console.WriteLine();
+                case "K":
+                    King king = new King();
+                    king.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
+                    Console.WriteLine(king.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.BackgroundColor = ConsoleColor.White;
-                    Console.WriteLine(Rook.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.WriteLine();
                     RunChess();
                     break;
-                //case "N":
-                //    break;
-                case "B":
-                    Bishop.BoardPrinterWithLegalSteps(figure, coordinates);
+                case "R":
+                    Rook rook = new Rook();
+                    rook.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Console.WriteLine("Please enter initial then destination coordinates for ROOK.".ToUpper());
+                    Console.WriteLine();
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine(rook.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine();
+                    RunChess();
+                    break;
+                case "N":
+                    Knight knight = new Knight();
+                    knight.BoardPrinterWithLegalSteps(figure, coordinates);
                     Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
-                    Console.WriteLine(Bishop.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.WriteLine(knight.MoveTo(GetCoordinates(), GetCoordinates()));
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine();
+                    RunChess();
+                    break;
+                case "B":
+                    Bishop bishop = new Bishop();
+                    bishop.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Console.WriteLine("Please enter initial then destination coordinates for Bishop.".ToUpper());
+                    Console.WriteLine(bishop.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.WriteLine();
                     RunChess();
                     break;
                 case "Q":
-                    Queen.BoardPrinterWithLegalSteps(figure, coordinates);
+                    Queen queen = new Queen();
+                    queen.BoardPrinterWithLegalSteps(figure, coordinates);
                     Console.WriteLine("Please enter initial then destination coordinates for Queen.".ToUpper());
                     Console.WriteLine();
+                    Console.WriteLine(queen.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.BackgroundColor = ConsoleColor.White;
-                    Console.WriteLine(Queen.MoveTo(GetCoordinates(), GetCoordinates()));
                     Console.WriteLine();
                     RunChess();
                     break;

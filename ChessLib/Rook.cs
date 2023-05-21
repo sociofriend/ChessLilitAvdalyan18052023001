@@ -15,7 +15,7 @@ namespace ChessLib
         /// <param name="figure">String type variable.</param>
         /// <param name="coordinates">Two-dimensional array of integers.</param>
         /// <returns></returns>
-        public static int[,] AddLegalSteps(string figure, int[,] coordinates)
+        public int[,] AddLegalSteps(string figure, int[,] coordinates)
         {
             for(int i=0; i<8; i++)
                 {
@@ -46,7 +46,7 @@ namespace ChessLib
         /// </summary>
         /// <param name="figure">String type variable.</param>
         /// <param name="coordinates">Array of integers with i,j coordinates of the figure on the board.</param>
-        public static void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
+        public void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
         {
             //assign row and coloumn by user input coordinates
 
@@ -86,7 +86,13 @@ namespace ChessLib
             Console.WriteLine("  A B C D E F G H  ");
         }
 
-        public static bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="initialCoordinates"></param>
+        /// <param name="destinationCoordinates"></param>
+        /// <returns></returns>
+        public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
         {
             AddLegalSteps("q", initialCoordinates);
 
@@ -115,6 +121,5 @@ namespace ChessLib
             return false;
         }
     }
-    
 }
 

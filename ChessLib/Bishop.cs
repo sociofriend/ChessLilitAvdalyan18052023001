@@ -47,7 +47,7 @@ namespace ChessLib
         /// </summary>
         /// <param name="figure">String type variable.</param>
         /// <param name="coordinates">Array of integers with i,j coordinates of the figure on the board.</param>
-        public static void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
+        public void BoardPrinterWithLegalSteps(string figure, int[,] coordinates)
         {
             Bishop.coordinates = coordinates;
             Console.BackgroundColor = ConsoleColor.White;
@@ -76,7 +76,7 @@ namespace ChessLib
             Console.WriteLine("  A B C D E F G H  ");
         }
 
-        public static bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
+        public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
         {
             AddLegalSteps("q", initialCoordinates);
 
