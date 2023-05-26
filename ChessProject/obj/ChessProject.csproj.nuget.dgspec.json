@@ -44,6 +44,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "Microsoft.TeamFoundationServer.Client": {
+              "target": "Package",
+              "version": "[16.205.1, )"
             }
           },
           "imports": [
@@ -104,6 +108,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.TeamFoundationServer.Client": {
+              "target": "Package",
+              "version": "[16.205.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
