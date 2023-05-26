@@ -50,7 +50,7 @@ namespace ChessLib
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if ((coordinates[i, j] != 1) && (numbers.Contains(figureNumber - coordsToNumber(i,j))))
+                    if ((coordinates[i, j] != 1) && (numbers.Contains(figureNumber - coordsToNumber(i, j))))
                         coordinates[i, j] = 2;
                 }
             }
@@ -78,7 +78,7 @@ namespace ChessLib
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (coordinates[i,j] ==2 && numbers.Contains(figureNumber - coordsToNumber(i, j)))
+                    if (coordinates[i, j] == 2 && numbers.Contains(figureNumber - coordsToNumber(i, j)))
                     {
                         steps[count] = coordsToString(i, j);
                         count++;
@@ -145,7 +145,7 @@ namespace ChessLib
         /// Identifies the destination coordinates of the given figure.</param>
         /// <returns>Boolean value.</returns>
         public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
-            {
+        {
             AddLegalSteps("n", initialCoordinates);
 
             int destRow = 0;
@@ -174,12 +174,13 @@ namespace ChessLib
         }
 
         /// <summary>
-        /// մտածել ռեկուրսիայով
+        /// Counts steps mvoed for getting to destination coordinates.
         /// </summary>
         /// <param name="initialCoordinates"></param>
         /// <param name="destinationCoordinates"></param>
         /// <returns></returns>
-        int countOfSteps=0;
+
+        int countOfSteps = 0;
         public int FindMinStepsToDest(int[,] initialCoordinates, int[,] destinationCoordinates)
         {
             string[] initialSteps = LegalStepsToArrey(initialCoordinates);
@@ -198,12 +199,12 @@ namespace ChessLib
 
 
             if (initialCoordinates == destinationCoordinates)
-                return 0;
+                return countOfSteps;
 
             foreach (string element in initialSteps)
             {
                 if (element != null && element.Equals(figureNumber.ToString()))
-                    return 1;
+                    return countOfSteps+1;
             }
 
             foreach (string element in initialSteps)
@@ -211,25 +212,22 @@ namespace ChessLib
                 foreach (string elem in destinationSteps)
                 {
                     if (element != null && elem != null && element.Equals(elem))
-                        return 2;
+                        return countOfSteps+2;
                 }
             }
-
-            if (countOfSteps == 0)
+            countOfSteps = 3;
+            foreach (string el in initialSteps)
             {
-                //countOfSteps 
-                foreach (string el in initialSteps)
+                foreach (string e in destinationSteps)
                 {
-                    foreach(string e in destinationSteps)
-                    {
-                        int i = Int32.Parse(el) % 10;
-                        int j = Int32.Parse(el) - i;
-                        FindMinStepsToDest(Coordinates.CreateArray2D(i, j), destinationCoordinates);
-                    }
+                    int i = Int32.Parse(el) % 10;
+                    int j = Int32.Parse(el) - i;
+                    return FindMinStepsToDest(Coordinates.CreateArray2D(i, j), destinationCoordinates);
                 }
             }
             return countOfSteps;
         }
     }
 }
+
 
