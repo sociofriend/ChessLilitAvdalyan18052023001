@@ -216,12 +216,12 @@ namespace ChessLib
                 }
             }
             countOfSteps = 3;
-            foreach (string el in initialSteps)
+            foreach (string element in initialSteps)
             {
-                foreach (string e in destinationSteps)
+                foreach (string elem in destinationSteps)
                 {
-                    int i = Int32.Parse(el) % 10;
-                    int j = Int32.Parse(el) - i;
+                    int i = Int32.Parse(elem) % 10;
+                    int j = Int32.Parse(elem) - i;
                     return FindMinStepsToDest(Coordinates.CreateArray2D(i, j), destinationCoordinates);
                 }
             }
