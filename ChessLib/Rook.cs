@@ -87,11 +87,13 @@ namespace ChessLib
         }
 
         /// <summary>
-        /// 
+        /// Shows whether the given figure may take the given step.
         /// </summary>
-        /// <param name="initialCoordinates"></param>
-        /// <param name="destinationCoordinates"></param>
-        /// <returns></returns>
+        /// <param name="initialCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the initial coordinates of the given figure.</param>
+        /// <param name="destinationCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the destination coordinates of the given figure.</param>
+        /// <returns>Boolean value.</returns>
         public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
         {
             AddLegalSteps("q", initialCoordinates);

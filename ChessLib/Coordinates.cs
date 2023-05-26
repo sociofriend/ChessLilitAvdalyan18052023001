@@ -3,10 +3,6 @@ namespace ChessLib
 {
     public struct Coordinates
     {
-        public Coordinates()
-        {
-
-        }
 
         /// <summary>
         /// Creates two-dimensional array of integers with user coordinates for figure.

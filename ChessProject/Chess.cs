@@ -4,7 +4,7 @@ namespace ChessProject
 {
 	public class Chess
 	{
-		public Chess()
+        public Chess()
 		{
 			Console.WriteLine("Chess Project running...");
 		}
@@ -113,14 +113,18 @@ namespace ChessProject
                     break;
             }
         }
+
         /// <summary>
         /// Prints given initial and destionation coordinates of the given figure with legal steps.
         /// </summary>
         void PrintBoardWithNewSteps()
         {
             string figure1 = GetFigure();
+
             Console.WriteLine("\nPlease input the initial  coordinates: ");
             int[,] initialCoordinates = GetCoordinates();
+            
+
             Console.WriteLine("\nNow please input the destination  coordinates: ");
             int[,] destinationCoordinates = GetCoordinates();
 
@@ -143,6 +147,7 @@ namespace ChessProject
                         king.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
                     }
                     break;
+
                 case "R":
                     Rook rook = new Rook();
                     rook.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
@@ -162,21 +167,24 @@ namespace ChessProject
                     break;
                 case "N":
                     Knight knight = new Knight();
-                    knight.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
-                    if (knight.MoveTo(initialCoordinates, destinationCoordinates))
-                    {
-                        Console.WriteLine("Right input.");
-                        knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nNow please input the destination  coordinates: ");
-                        destinationCoordinates = GetCoordinates();
-                        knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
-                    }
-                        break;
+                    //knight.BoardPrinterWithLegalSteps(figure1, initialCoordinates);
+                    //if (knight.MoveTo(initialCoordinates, destinationCoordinates))
+                    //{
+                    //    Console.WriteLine("Right input.");
+                    //    knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("\nWRONG INPUT: Please input a legal step.");
+                    //    Console.BackgroundColor = ConsoleColor.White;
+                    //    Console.WriteLine("\nNow please input the destination  coordinates: ");
+                    //    destinationCoordinates = GetCoordinates();
+                    //    knight.BoardPrinterWithLegalSteps(figure1, destinationCoordinates);
+                    //}
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"The number of excuted steps is {knight.FindMinStepsToDest(initialCoordinates, destinationCoordinates)}");
+                    Console.BackgroundColor = ConsoleColor.White;
+                    break;
                 case "B":
                     Bishop bishop = new Bishop();
                     bishop.BoardPrinterWithLegalSteps(figure1, initialCoordinates);

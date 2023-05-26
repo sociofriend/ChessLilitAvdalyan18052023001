@@ -20,6 +20,11 @@ namespace ChessLib
             return int.Parse(string.Concat(i.ToString(), j.ToString()));
         }
 
+        public string coordsToString(int i, int j)
+        {
+            return string.Concat(i.ToString(), j.ToString());
+        }
+
         /// <summary>
         ///Recieves two-dimensional array of integers identifying the place of the
         ///figure, assignes the value of 2 to coordinates matching the legal steps' requirements.
@@ -33,6 +38,18 @@ namespace ChessLib
             {
                 for (int j = 0; j < 8; j++)
                 {
+                    if (coordinates[i, j] == 1)
+                    {
+                        figureNumber = coordsToNumber(i, j);
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
                     if ((coordinates[i, j] != 1) && (numbers.Contains(figureNumber - coordsToNumber(i,j))))
                         coordinates[i, j] = 2;
                 }
@@ -40,6 +57,36 @@ namespace ChessLib
             return coordinates;
         }
 
+        public string[] LegalStepsToArrey(int[,] coordinates)
+        {
+            coordinates = AddLegalSteps("n", coordinates);
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (coordinates[i, j] == 1)
+                    {
+                        figureNumber = coordsToNumber(i, j);
+                        break;
+                    }
+                }
+            }
+
+            int count = 0;
+            string[] steps = new string[8];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (coordinates[i,j] ==2 && numbers.Contains(figureNumber - coordsToNumber(i, j)))
+                    {
+                        steps[count] = coordsToString(i, j);
+                        count++;
+                    }
+                }
+            }
+            return steps;
+        }
 
         /// <summary>
         /// Prints the figure of Knigh on the board with the given coordinates, and available legal steps.
@@ -63,7 +110,6 @@ namespace ChessLib
 
             }
 
-            //make reference to the AddLegalSteps return type local membber from the coordinatesFigureSteps variable.
             int[,] coordinatesFigureSteps = AddLegalSteps(figure, coordinates);
 
             //print the board
@@ -90,6 +136,14 @@ namespace ChessLib
             }
         }
 
+        /// <summary>
+        /// Shows whether the given figure may take the given step.
+        /// </summary>
+        /// <param name="initialCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the initial coordinates of the given figure.</param>
+        /// <param name="destinationCoordinates">Array of integers where figure coordinates is given i,j.
+        /// Identifies the destination coordinates of the given figure.</param>
+        /// <returns>Boolean value.</returns>
         public bool MoveTo(int[,] initialCoordinates, int[,] destinationCoordinates)
             {
             AddLegalSteps("n", initialCoordinates);
@@ -117,6 +171,64 @@ namespace ChessLib
             }
             Console.BackgroundColor = ConsoleColor.Red;
             return false;
+        }
+
+        /// <summary>
+        /// մտածել ռեկուրսիայով
+        /// </summary>
+        /// <param name="initialCoordinates"></param>
+        /// <param name="destinationCoordinates"></param>
+        /// <returns></returns>
+        int countOfSteps=0;
+        public int FindMinStepsToDest(int[,] initialCoordinates, int[,] destinationCoordinates)
+        {
+            string[] initialSteps = LegalStepsToArrey(initialCoordinates);
+            string[] destinationSteps = LegalStepsToArrey(destinationCoordinates);
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (destinationCoordinates[i, j] == 1)
+                    {
+                        figureNumber = coordsToNumber(i, j);
+                    }
+                }
+            }
+
+
+            if (initialCoordinates == destinationCoordinates)
+                return 0;
+
+            foreach (string element in initialSteps)
+            {
+                if (element != null && element.Equals(figureNumber.ToString()))
+                    return 1;
+            }
+
+            foreach (string element in initialSteps)
+            {
+                foreach (string elem in destinationSteps)
+                {
+                    if (element != null && elem != null && element.Equals(elem))
+                        return 2;
+                }
+            }
+
+            if (countOfSteps == 0)
+            {
+                //countOfSteps 
+                foreach (string el in initialSteps)
+                {
+                    foreach(string e in destinationSteps)
+                    {
+                        int i = Int32.Parse(el) % 10;
+                        int j = Int32.Parse(el) - i;
+                        FindMinStepsToDest(Coordinates.CreateArray2D(i, j), destinationCoordinates);
+                    }
+                }
+            }
+            return countOfSteps;
         }
     }
 }
